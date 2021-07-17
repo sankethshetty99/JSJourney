@@ -1,0 +1,17 @@
+Javascript Learning www.codeguage.com!!
+
+
+var // updated and redeclared within scope
+let // updated but not redeclared
+const // neither be updated nor re-declared
+
+HOISTING
+all "declarations" are hoisted to the top
+
+
+=================================================================
+Numbers !
+
+10**2
+
+toPrecision(0)
