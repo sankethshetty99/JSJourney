@@ -1,17 +1,76 @@
 Javascript Learning www.codeguage.com!!
 
+FOUNDATION
 
 var // updated and redeclared within scope
 let // updated but not redeclared
 const // neither be updated nor re-declared
 
-HOISTING
+const has to be initialised when declared.
+
+hoisting
 all "declarations" are hoisted to the top
+
+data types - primitives and objects
+primitives(passed by value) - numbers, strings, booleans, undefined and null
+objects(passed by reference ) - arrays, function and pure objects
+
+Literals -- less memory usage
+A literal is any non-constructor way of creating a data type
+Number literal
+template literal
+Boolean literal
+
+Constructor way -- needs more memory, coz it loads all functions
+new Number()
+new String()
+new Boolean()
+-------------
+new Array()
+-------------
+
+gotcha - bug left alone for backwards compatibility
+typeof null; // "object"
+typeof function() {}; // "function" --> callable objects
+
+loosely typed language
+
++ - --> operators
+10 20 ---> operands on which operators operate
+fn() --> the operation
+
+Operators
+- arithmetic
+- assignment
+- comparison
+- logical || && !
+
+- unary - takes 1 operand
+- binary - takes 2 operands
+- tertiary - takes 3 (conditionals)
+
+
+pass by value - primitive datatype
+pass by reference - Objects
+
+Scope
+Only the declaration of a variable governs its scope NOT assignment
+- Global -- A variable that is declared using the var keyword, and is not within a function, is a global variable. 
+- Local/Function - 
+- Block weird random braces let keyword 
+
+
 
 
 =================================================================
 Numbers !
 
 10**2
+Special numbers - +-Infinity, NaN
+isNaN(2) // false
+isFinite(NaN) // false
 
-toPrecision(0)
+Number(str); // num is 10, not "10"
+parseInt(str)
+
+
