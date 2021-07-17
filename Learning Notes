@@ -1,0 +1,100 @@
+Node can control the v8 engine options nice
+
+node -c app.js #check for syntax issues
+
+node -p #print "code"
+node e #evaluate "code"
+
+# core modules are accessible by default while evaluating
+fs
+
+node -r #prerequire, one file before running another file like custom modules
+
+node --inspect app.js #inspect modules
+node --inspect-brk app.js  #inspect with active breakpoint. stops at the first line of executable code
+chrome://inspect/  --> this connects to any debugging opportunity using web sockets
+
+debugger; keyword
+
+#JS datatypes
+null
+undefined - an unassigned variable, a non existent property, a functiom that does not return anything returns undefined
+Boolean - t/f
+String - template literals, immutable
+Number - floating point=> integers and the decimals 2^53-1
+BigInt - no limits.
+Symbol
+
+use typeof to checktype
+
+arrays are objects - push pop shift unshift
+functions are objects
+
+All JavaScript objects have prototypes. A prototype is an implicit reference to another object that is queried in property lookups.
+
+.hasOwnProperty(propname)
+doesnt look at prototype properties
+
+iterate over properties
+or (let property in duck)
+
+Bird.prototype.isPrototypeOf(duck); #true
+Object.prototype.isPrototypeOf(Bird.prototype);
+
+Object is a supertype for all objects in JavaScript
+
+Bird.prototype = Object.create(Animal.prototype);
+Always reset the inherited contructor for this prototype
+Bird.prototype.constructor = Bird;
+
+If an object doesn't have a particular property, the object's prototype is checked for that property.
+If the object's prototype does not have that property, the object's prototype's prototype is checked and so on.
+This is how inheritance in JavaScript works, JavaScript is a prototypal language
+
+const obj = { id: 999, fn: function () { console.log(this.id) } }
+obj.fn() // prints 999
+
+When a function is assigned to an object, when the implicit this keyword is accessed within that function it will refer to the object on which the function was called. This is why obj.fn() 
+
+It's crucial to understand that this refers to the object on which the function was called, not the object which the function was assigned to:
+
+const obj = { id: 999, fn: function () { console.log(this.id) } }
+const obj2 = { id: 2, fn: obj.fn }
+obj2.fn() // prints 2
+obj.fn() // prints 999
+
+Functions have a call method that can be used to set their this context:
+fn.call(obj) # univeral !
+
+Lambda functions do not have their own this context, when this is referenced inside a function, it refers to the this of the nearest parent non-lambda function.
+
+function fn() {
+  return (offset) => {
+   console.log(this.id + offset)
+  }
+}
+const obj = { id: 999 }
+const offsetter = fn.call(obj)
+offsetter(1) // prints 1000 (999 + 1)
+
+While normal functions have a prototype property (which will be discussed in detail shortly), fat arrow functions do not:
+
+function normalFunction () { }
+const fatArrowFunction = () => {}
+console.log(typeof normalFunction.prototype) // prints 'object'
+console.log(typeof fatArrowFunction.prototype) // prints 'undefined'
+
+
+The Object.getOwnPropertyDescriptor can be used to get a property descriptor on any object
+
+When creating a new object --> Object.create() --> the prototypical way !
+
+PROTOTYPICAL inheritance chaining
+1. Functional
+2. Constructor functions --> legacy freecodecamp.
+3. Class syntax contructors
+The class keyword is syntactic sugar that actually creates a function. Specifically it creates a function that should be called with new.
+
+
+Tool.prototype points to the prototype object for all the instances of that function.
+
