@@ -20,6 +20,7 @@ A literal is any non-constructor way of creating a data type
 Number literal
 template literal
 Boolean literal
+Object literal
 
 Constructor way -- needs more memory, coz it loads all functions
 new Number()
@@ -27,10 +28,12 @@ new String()
 new Boolean()
 -------------
 new Array()
+new Object()
 -------------
 
 gotcha - bug left alone for backwards compatibility
 typeof null; // "object"
+
 typeof function() {}; // "function" --> callable objects
 
 loosely typed language
@@ -71,6 +74,168 @@ isNaN(2) // false
 isFinite(NaN) // false
 
 Number(str); // num is 10, not "10"
-parseInt(str)
+parseInt(str,2 ) // first converts whatver you give it into a string actually parses the first Number, also option to assume base
+parseFloat()
+num.toPrecison(2); // returns string
+toFixed()
+toString(2) // binary output
 
+loops
+continue - skips out of the current iteration
+break - breaks out of the  loop
+
+func arguments 
+arguments variable is always avaialble.
+arguments is an indexed collection, looks like obj.
+
+functions
+three most frequently used methods inherited by all functions i.e bind(), call() and apply().
+
+
+CALL
+----
+function transform(arrayLikeObj) {
+   return Array.prototype.slice.call(arrayLikeObj);
+}
+// Array.prototype.slice just take the indexes collection and makes an array out of it. (tested it)
+
+function is5Present() {
+   return transform(arguments).indexOf(5) !== -1
+}
+
+console.log(is5Present(1, 2, 3)); // false
+console.log(is5Present(1, 5, 3)); // true
+console.log(is5Present(-5, 10, 55)); // false
+
+
+by default, THIS keyword = window obj, unless otherwise specified.
+
+BIND (get an instance of the function thats bound to a particular THIS)
+----
+var name = "Global name";
+
+function alertName() {
+   alert(this.name);
+}
+
+alertName(); // "Global name"
+
+var obj = {name: "Object name"};
+var alertName2 = alertName.bind(obj);
+
+alertName2(); // "Object name"
+
+================================================
+
+Objects from objects
+
+var tv2 = Object.create(tv);
+*//It makes the new object's prototype the template object from which it inherits properties and methods.
+----------------------------------------------------------------
+CONSTRUCTORS
+this is a constructor function
+function Book(name, genre, pages, id) {
+   this.name = "Testing " + name; // value changed to include "Testing" before it
+   this.genre = genre;
+   this.pages = pages;
+   this.id = id;
+   this.displayInfo = function() { return "Name: " + this.name + " Genre: " + this.genre + " Pages: " + this.pages; }
+}
+
+can create objects using this contructor function.
+each object will have a property "constructor" which points back to this function
+
+----------------------------------------------------------------
+Extending the constructor function
+function Book(name, genre, pages, id) {
+   this.name = "Testing " + name; // value changed to include "Testing" before it
+   this.genre = genre;
+   this.pages = pages;
+   this.id = id;
+   this.displayInfo = function() { return "Name: " + this.name + " Genre: " + this.genre + " Pages: " + this.pages; }
+}
+function Coding(name, genre, pages, id, rating) {
+   Book.call(this, name, genre, pages, id)
+   this.rating = rating;
+}
+----------------------------------------------------------------
+
+PROTOTYPES
+using prototype to avoid duplicating functions (displayInfo)across all the objects that are created. Saving memory
+
+function Book(name, genre, pages, id) {
+   this.name = name;
+   this.genre = genre;
+   this.pages = pages;
+   this.id = id;
+} // Same constructor with removed method
+
+// displayInfo() method on the prototype object
+Book.prototype.displayInfo = function() { return "Name: " + this.name + " Genre: " + this.genre + " Pages: " + this.pages; }
+
+var book1 = new Book("Web Designing Guide", "General Knowledge", 156, 3156); // has a displayInfo() method, but not its own
+var book2 = new Book("JS Skills", "General Knowledge", 500, 1052); // has a displayInfo() method, but not its own
+
+Book.prototype is the PROTOTYPE OBJECT FOR THE INSTANCES OF Book()
+IT IS NOT THE PROTOTYPE OF Book.
+*Remember one thing that the prototype property is only available to functions.*
+
+*
+// Covers all objects - book1, book2, book3 and so on
+Book.prototype.displayInfo = function() { return "Name: " + this.name + " Genre: " + this.genre + " Pages: " + this.pages; }
+
+- Book is the contructor function
+- functions are objects in JS
+- objects have functions defined for them like call()
+- objects have properties. One of the property is PROTOTYPE
+
+Book.prototype --> The value is an Object.
+THIS IS THE BASIS FOR PROTOTYPE INHERITENCE.
+Anything you define inside this Book.prototype object will flow into the objects that will be created using that constructor function.
+
+
+PROPERTY        | WHERE DOES IT EXIST 
+"constructor"   | each obj. book1.constructor
+"prototype"     | The constructor function Book.prototype
+__proto__       | each obj. book1.__proto__ //Book.prototype
+
+how to get prototype of the Object,
+Object.getPrototypeOf(book1) <===> book1.__proto__
+//Book.prototype
+
+===================================================================
+
+Putting some things together again.
+-----------------------------------
+
+function Book(name, genre, pages, id) {
+   this.name = name;
+   this.genre = genre;
+   this.pages = pages;
+   this.id = id;
+}
+
+// all functions to be created in prototype to save memory because the value will be same across all objects created.
+Book.prototype.displayInfo = function() { return "Name: " + this.name + " Genre: " + this.genre + " Pages: " + this.pages; }
+
+// extending the Book constructor function.
+function Coding(name, genre, pages, id, rating) {
+    // call method always takes an obj as first input
+   Book.call(this, name, genre, pages, id)
+   this.rating = rating;
+}
+
+var f1 = new Coding("JavaScript Is Best", "General Knowledge", 500, 1068, 3.5);
+
+console.log(f1.displayInfo()); // throws an error
+
+*
+// Coding's instances inherit properties from Code.prototype not Book.prototype.
+
+Coding.prototype = Object.create(Book.prototype)
+//Object.create simply sets Book.prototype as the PROTOTYPE of Coding.prototype.
+The Object.create() method creates a new object, using an existing object as the prototype of the newly created object.
+
+
+arr1.constructor will point to the Array() function that acts as blueprint for all Arrays
 
