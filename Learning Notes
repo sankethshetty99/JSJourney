@@ -91,10 +91,12 @@ When creating a new object --> Object.create() --> the prototypical way !
 
 PROTOTYPICAL inheritance chaining
 1. Functional
-2. Constructor functions --> legacy freecodecamp.
+2. Constructor functions --> legacy learnt from codegauge
 3. Class syntax contructors
 The class keyword is syntactic sugar that actually creates a function. Specifically it creates a function that should be called with new.
 
 
 Tool.prototype points to the prototype object for all the instances of that function.
+Tool.prototype --> {properties, functions } --> inherited by all the instances using Tool as their constructor function.
+
 

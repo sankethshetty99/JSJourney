@@ -220,7 +220,7 @@ Book.prototype.displayInfo = function() { return "Name: " + this.name + " Genre:
 
 // extending the Book constructor function.
 function Coding(name, genre, pages, id, rating) {
-    // call method always takes an obj as first input
+    // call method always takes an obj as first input. Always present on Functions
    Book.call(this, name, genre, pages, id)
    this.rating = rating;
 }
@@ -238,4 +238,27 @@ The Object.create() method creates a new object, using an existing object as the
 
 
 arr1.constructor will point to the Array() function that acts as blueprint for all Arrays
+
+----------------------------------------------------
+
+So this prototypical inheritance is made possible by 
+1. constructor functions
+2. Object.create()
+3. Book.call(this,...)
+
+wow thats actually a pretty complex set of operations
+
+----------------------------------------------------
+
+The prototype of plain JavaScript objects is Object.prototype
+obj = { x: 10, y: 20 } // objects literal syntax
+
+Object.prototype
+ |
+some object literal
+ |
+Object.created's prototype
+
+
+
 
