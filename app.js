@@ -11,6 +11,15 @@ var obj = {
  
 console.log(obj)
 
+function spreadTest(name){
+    console.log(name)
+}
+
+spreadTest({
+    id: 3,
+    year: 2021
+})
+
 
 
 
