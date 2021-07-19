@@ -282,7 +282,7 @@ rufus.woof() // prints "Rufus the dog: woof"
 rufus.howl() // prints "Rufus the dog: awoooooooo"
 
 -------------------------------------------------------
-Made possible with super + class + new 
+Made possible with super + class + new + this
 
 Any methods other than constructor that are defined in the class are added to the prototype object of the function that the class syntax creates.
 
@@ -308,4 +308,9 @@ console.log(ncb) //prints {id: 1, type: 'book', name: 'Node Cookbook'}
 usecases
 -state control
 -encapsulating state using closure scope 
+
+no prototypal inheritance
+no new, no this, no constructor... pure functional composition.
+---------------------------------------------------------------
+
 

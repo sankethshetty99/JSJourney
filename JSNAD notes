@@ -99,4 +99,15 @@ The class keyword is syntactic sugar that actually creates a function. Specifica
 Tool.prototype points to the prototype object for all the instances of that function.
 Tool.prototype --> {properties, functions } --> inherited by all the instances using Tool as their constructor function.
 
+Closure - refer to the codegauage notes.
+
+==============================================================================================================
+
+NPM
+
+Semver range version number 
+
+
+
+
 
