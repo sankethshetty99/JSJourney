@@ -106,8 +106,38 @@ Closure - refer to the codegauage notes.
 NPM
 
 Semver range version number 
+Semver format. 3 numbers major, minor, patch
+Semver range
+
+caret ranges ^ - doesnt allow major version change
+^1.2.3 := >=1.2.3 <2.0.0
+^0.2.3 := >=0.2.3 <0.3.0 (0 seems to be special)
+^1.x := >=1.0.0 <2.0.0
+^0.x := >=0.0.0 <1.0.0
+
+tilde ranges ~ - doesnt allow minor version change
+~1.2 := >=1.2.0 <1.(2+1).0 := >=1.2.0 <1.3.0 (Same as 1.2.x)
+~0.2.3 := >=0.2.3 <0.(2+1).0 := >=0.2.3 <0.3.0
 
 
+npm install --save-dev standard
+// installs dev dependencies
 
+npm install --production
+// installs only dependencies not the dev dependencies
+
+
+npm test , npm start are defaults
+everything else npm run "script"
+
+------------------
+if (require.main === module)
+
+Using this , you can change behavior if this is invoked as the main js or 
+
+module.exports = reverseAndUpper
+when used to import into other js modules
+
+require.resolve. This can be used to determine the absolute path for any required module.
 
 

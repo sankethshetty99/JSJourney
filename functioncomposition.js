@@ -1,31 +1,21 @@
-// instead of prototypical inheritance. 
+// instead of prototypical inheritance.
 // this uses closures.
 // takes advantage of the scoping variations
 
+function Animal () {
+  const howl = () => {
+    console.log('')
+  }
 
-function Animal(name){
+  return {
+    // counter++;
 
-    const howl = () => {
-        console.log("")
-    }
-
-    return {
-        counter++;
-
-    }
+  }
 }
 
-function Dog(name){
+function Dog (name) {
 
 }
-
 
 const chubbu = Dog('chubbu')
-const scooby = Dog('scooby')
-
-chubbu
-
-
-
-
-
+const scooby = Dog('scoo by')
