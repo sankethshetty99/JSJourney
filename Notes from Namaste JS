@@ -17,13 +17,33 @@ this = window
 any var can be accessed as this.x instead of x
 ---
 lexical scope
-top of call stack has access to variables in the bottom of call stack.
+top of call stack has access to variables in the bottom of call stack. so that entire area that it has access to is called lexical scope.
+
 ---
 let const and var have different hoisting rules
-let variables go into temporal dead zone, variable is hoisted not in the global scope but, in a seaparate zone , giving us a ref err if u try to access before initialization
-with let, you have to initialise, to be able to access it
+let variables go into temporal dead zone, variable is hoisted not in the global scope but, in a separate zone , giving us a ref err if u try to access before initialization
+with let, you have to initialise, to be able to access it.
+if u try to access - reference error. let variables are not attached to the global scope.
 
-trying to redeclare - syntax err
+trying to redeclare a let - syntax err
+trying to redeclare a const - type err
+
+-------
+closure
+
+a function bundled with its lexical scope .
+usecases:
+- module design pattern
+- currying
+- functions like once
+- memoize
+- maintaining state in aync world
+- setTimeouts
+- iterators
+- and many more..
+
+
+
 
 
 
