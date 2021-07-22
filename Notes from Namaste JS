@@ -1,0 +1,33 @@
+
+JS creates execution contexts, withing execution contexts
+that store variables in mem + execution code
+1st phase mem creation mem 
+2nd phase running code in execution code
+
+variables = undefined
+functions = whole code
+This has implications with hoisting.
+arrow functions are variables = undefined
+
+The call stack - is the stack of execution contexts.
+
+---
+In the global context,
+this = window
+any var can be accessed as this.x instead of x
+---
+lexical scope
+top of call stack has access to variables in the bottom of call stack.
+---
+let const and var have different hoisting rules
+let variables go into temporal dead zone, variable is hoisted not in the global scope but, in a seaparate zone , giving us a ref err if u try to access before initialization
+with let, you have to initialise, to be able to access it
+
+trying to redeclare - syntax err
+
+
+
+
+
+
+
