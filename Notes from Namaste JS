@@ -43,6 +43,56 @@ usecases:
 - and many more..
 
 
+-------
+Javascript Runtime environment
+=
+JS engine (v8)
++
+Event loop (actually a runtime concept, not engine concept)
++
+Callback queue(task queue)
++
+Microtask queue (higher priority)
+(promises and document mutations)
++
+native APIs
+
+
+Example of JS runtime environment
+= nodeJS / Broswer
+
+both have all of those things.
+
+Example of APIs
+- setTimeouts
+- DOM APIs (on Browser)
+- fetch
+- console
+
+so different environments expose diff APIs
+setTimeout (same name for both browser and nodeJS), but are completely different implementations underneath. (same behavior)
+
+------------
+JS engine
+= 
+Call stack. (stack of execution contexts)
++
+Parser of code creates AST(abstract syntax tree)
++ 
+JIT compilation, which means
+Interpreter(knows to run the run line by line)
++ Compiler (keeps optimising parts of the code in the background) for the interpreter to be able to execute the bytecode even faster next time.
++ 
+Actual execution of the code
++
+Garbage collector
++
+Memory heap
+
+
+
+
+
 
 
 
