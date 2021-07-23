@@ -42,6 +42,9 @@ usecases:
 - iterators
 - and many more..
 
+Whenever a function is passed onto another function as a parameter, the whole bundle within lexical scope is passed on to it. Almost like the execution context is passed along with it. A reference ofc coz functions are objects in JS.
+
+
 
 -------
 Javascript Runtime environment
