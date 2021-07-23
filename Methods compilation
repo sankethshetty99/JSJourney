@@ -1,0 +1,8 @@
+Array.from(Array(3))
+
+concat(arr)
+
+Promise.resolve()
+
+Promise.all(arr)
+
