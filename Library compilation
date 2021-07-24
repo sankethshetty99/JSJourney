@@ -1,5 +1,12 @@
-promisify
+util . promisify
 fs
 standard - i wont use.
 events
+
+
+
+Finally, have to make a mini project with all the concepts learnt
+- Event emitter
+- promises + async await for serial execution
+- closure (lexical scoping)
 

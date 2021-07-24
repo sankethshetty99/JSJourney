@@ -1,6 +1,6 @@
 Array.from(Array(3))
 
-concat(arr)
+Buffer.concat(arr)
 
 Promise.resolve()
 
