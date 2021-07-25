@@ -188,3 +188,48 @@ myEmitter.emit('an-event', some, args)
 // namespace, 
 
 
+==============================================================================================================
+ERROR throwing
+There are six other native error constructors that inherit from the base Error constructor, these are:
+
+EvalError
+SyntaxError
+RangeError
+ReferenceError
+TypeError
+URIError
+
+throw new Error('this is an error message')
+* typeof comparisons
+* var err= new SyntaxError(); err instanceof SyntaxError // true
+
+
+-----
+
+client code - handles err.
+
+server code - that throws the err.
+when throwing err, attach a err.code="SOME_DESCRIPTION"
+
+if client is not handling certain errors,
+it throws it up the stack(error propagation) to whoever the client's client is.
+
+the error propagation logic is entirely upto the context, which ones to propagate. which ones to catch at ehich layer
+
+error throwing and catching can be done in all 3 paradigms
+1. synchronous code 
+simple try catch
+2. callbacks 
+- you pass in the callback fn to doSome(val, (err, result)) [this is called an error first callback]
+- if err, the cb will call you with new Errors, 
+- if not cb will call u with cb(null, result)
+3. Promises/ async await 
+(async await is a friendlier syntax to use as it resembles synchronous)
+the error is propagated using the reject(new Err....), so u can catch handler.
+All async functions return promises,
+All then handlers return promises, therefore, catch handler.
+
+* Apply duck-typing to error checks,
+this is a technique, instead of checking the  err thrown at you,
+if the err.code is activated, we can choose  to the check the err.code =="APPROPRIATE STRING". Because, instance of might be too broad, might be catching other errors in other lines rather than your critical function.
+
