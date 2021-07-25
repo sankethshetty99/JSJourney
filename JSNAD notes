@@ -235,5 +235,72 @@ if the err.code is activated, we can choose  to the check the err.code =="APPROP
 
 
 ==============================================================================================================
+BUFFER
+
+ArrayBuffer == raw bytes in memory allocated.
+const buffer = new ArrayBuffer(8) 
+
+Upto you how you wantt to interpret it.
+
+Interpret using Uint8Array for example,
+This is the default view.
+const view = new Uint8Array(buffer);
+diff views have diff ranges
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays
+
+diff between using Buffer and Uint8Array directly.
+Buffer slices - ref to same memory
+Uint8Array slices - creates new memory allocation.
+
+//correct way to allocate memory not new keyword
+const buffer2 = Buffer.alloc(10)
+
+// unsafe way to use 
+const buffer = Buffer.allocUnsafe(10),
+memory is unlinked and not erased when not used. perf advantage, but security risk.
+
+String to buffer
+const buffer = Buffer.from('hello world')
+//UTF-8 is a text encoding - a way of encoding text as binary data.
+
+//Base64 is in some ways the opposite - it's a way of encoding arbitrary binary data as ASCII text.
+
+const buffer = Buffer.from('👀')
+console.log(buffer) // prints <Buffer f0 9f 91 80>
+console.log(buffer.toString('hex')) // prints f09f9180
+console.log(buffer.toString('base64')) // prints 8J+RgA==
+
+Buffer to string
+console.log(buffer.toString())
+
+==============================================================================================================
 FILE SYSTEM
 Management of the file system is really achieved with two core modules, fs and path
+__filename
+__dirname
+
+const { join } = require('path')
+join(__dirname, 'out.txt')
+path.join('foo', 'bar', 'baz') // works
+
+path builders methods 
+
+
+and path deconstructors methods
+path.parse
+
+---------
+The fs module has lower level and higher level APIs.
+Lower level APIs as these are rarely used in application code
+The higher level methods for reading and writing are provided in four abstraction types:
+
+Synchronous
+Callback based
+Promise based
+Stream based
+
+
+
+
+
+
