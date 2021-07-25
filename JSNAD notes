@@ -233,3 +233,7 @@ All then handlers return promises, therefore, catch handler.
 this is a technique, instead of checking the  err thrown at you,
 if the err.code is activated, we can choose  to the check the err.code =="APPROPRIATE STRING". Because, instance of might be too broad, might be catching other errors in other lines rather than your critical function.
 
+
+==============================================================================================================
+FILE SYSTEM
+Management of the file system is really achieved with two core modules, fs and path
