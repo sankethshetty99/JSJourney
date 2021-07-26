@@ -261,17 +261,82 @@ memory is unlinked and not erased when not used. perf advantage, but security ri
 
 String to buffer
 const buffer = Buffer.from('hello world')
-//UTF-8 is a text encoding - a way of encoding text as binary data.
+//UTF-8 is a text encoding - a way of encoding text as binary data. a = 61 = 0x61 = 8 bits = 1 byte. But other characters can take more than 1 byte. upto 4 bytes.
 
 //Base64 is in some ways the opposite - it's a way of encoding arbitrary binary data as ASCII text.
 
-const buffer = Buffer.from('👀')
-console.log(buffer) // prints <Buffer f0 9f 91 80>
-console.log(buffer.toString('hex')) // prints f09f9180
-console.log(buffer.toString('base64')) // prints 8J+RgA==
+const buffer = Buffer.from('abc')
+console.log(buffer) // prints <Buffer 61 62 63>
+console.log(buffer.toString('hex')) // prints 616263
+// but one problem with the binary data is, we dont know if 1 byte = 1 char or 2 byter/ 4 bytes - 1 char.
+// The binary data is transmitted as a string not as binary data.
+console.log(buffer.toString('base64')) // prints YWJj
+// base64 string is more popular.
+// so if you get YWJj
+Buffer.from('YWJj', 'base64').. how do u know if this is it or more to come to band together to decode as a single characters
+const { StringDecoder } = require('string_decoder')
+const frag1 = Buffer.from('f09f', 'hex')
+const frag2 = Buffer.from('9180', 'hex')
+console.log(frag1.toString()) // prints �
+console.log(frag2.toString()) // prints ��
+const decoder = new StringDecoder()
+console.log(decoder.write(frag1)) // prints nothing
+console.log(decoder.write(frag2)) // prints 👀 --> 4 byte unicode
 
-Buffer to string
-console.log(buffer.toString())
+---------
+JSON Serializing and Deserializing Buffers
+
+So Buffer instances are represented in JSON by an object that has a type property with a string value of 'Buffer' and a data property with an array of numbers, representing the value of each byte in the buffer.
+When deserializing, JSON.parse will only turn that JSON representation of the buffer into a plain JavaScript object, to turn it into an object the data array must be passed to Buffer.
+
+==============================================================================================================
+
+
+
+The Node core stream module exposes six constructors for creating streams:
+
+Stream inherits from Event Emitter + pipe
+Readable inherits from Stream
+Writable
+Duplex
+Transform
+PassThrough
+
+-----
+Stream events
+data - readable
+end - readable
+finish - writable
+close -  
+error - 
+
+
+There are two stream modes:
+
+Binary streams - default (read or write buffer instances)
+Object streams - (r/w JS objects [strings] numbers)
+objectMode option set false by default..
+
+Readable streams
+- fs.createReadStream, then events
+or a specific design pattern
+- const createReadStream = () => {
+  const data = ['some', 'data', 'to', 'read']
+  return new Readable({
+    read () {
+      if (data.length === 0) this.push(null)
+      else this.push(data.shift())
+    }
+  })
+}
+const readable = createReadStream()
+OR 
+const readable = Readable.from(['some', 'data', 'to', 'read'])
+objectMode option set true.. by default ! wow!
+highWaterMark option which defaults to 16kb.
+
+
+
 
 ==============================================================================================================
 FILE SYSTEM
